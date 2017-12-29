@@ -1,4 +1,74 @@
+body {
+  background-color: whitesmoke;
+}
 .app {
-  margin-top: 20px;
-  margin-bottom: 20px;
+  display: flex;
+  padding-top: 30px;
+  padding-bottom: 30px;
+  height: 95vh;
+}
+.garage {
+  width: 25%;
+  background-color: white;
+}
+.garage-image {
+  background-repeat: no-repeat;
+  height: 200px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+}
+.garage-logo {
+  width: 100px;
+  border-radius: 50%;
+  border: 2px solid white;
+  margin-bottom: -50px;
+  img {
+    width: 100%;
+
+  }
+}
+.garage-info {
+  margin-top: 60px;
+  .btn-cta {
+    background-color: transparent;
+    border: 1px solid black;
+    color: black;
+    font-weight: bold;
+    letter-spacing: 2px;
+    padding: 10px;
+    border-radius: 3px;
+  }
+}
+.garage-description {
+  padding: 30px;
+  color: gray;
+}
+.cars-list {
+  width: 75%;
+  background-color: lightgray;
+  padding: 20px;
+  overflow: scroll;
+}
+.car {
+  display: flex;
+  background-color: white;
+  margin-bottom: 10px;
+}
+.car-image {
+  width: 150px;
+  img {
+    width: 100%;
+  }
+}
+.car-info {
+  padding: 10px;
+}
+.cars-form {
+  width: 75%;
+  padding: 100px 150px;
+  form {
+    background: white;
+    padding: 35px;
+  }
 }
