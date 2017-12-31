@@ -49,11 +49,19 @@ body {
   background-color: lightgray;
   padding: 20px;
   overflow: scroll;
+  a {
+    text-decoration: none;
+    color: black;
+  }
 }
 .car {
   display: flex;
   background-color: white;
   margin-bottom: 10px;
+  opacity: 0.9;
+  &:hover {
+    opacity: 1;
+  }
 }
 .car-image {
   width: 150px;
@@ -71,4 +79,20 @@ body {
     background: white;
     padding: 35px;
   }
+  .form-error {
+    color: red;
+  }
+}
+.car-body {
+  display: flex;
+  justify-content: space-between;
+  width: calc(100% - 150px);
+}
+.car-plate {
+  border: 1px solid black;
+  padding: 10px;
+  text-align: center;
+}
+.car-destroy {
+  align-self: flex-end;
 }

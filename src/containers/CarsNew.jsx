@@ -20,7 +20,6 @@ class CarsNew extends Component {
       background: "linear-gradient(rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.4)), url('../../assets/images/vw_face.jpg')",
       backgroundSize: 'cover'
     };
-    const required = value => value ? undefined : 'Required';
 
     return(
       <div className="app">
@@ -49,31 +48,27 @@ class CarsNew extends Component {
              label="Brand"
              name="brand"
              type="text"
-             validate={required}
              component={this.renderField}
             />
             <Field
              label="Model"
              name="model"
              type="text"
-             validate={required}
              component={this.renderField}
             />
             <Field
              label="Owner"
              name="owner"
              type="text"
-             validate={required}
              component={this.renderField}
             />
             <Field
              label="Plate"
              name="plate"
              type="text"
-             validate={required}
              component={this.renderField}
             />
-            <button className="btn btn-danger" type="submit" disabled={this.props.pristine || this.props.submitting}>
+            <button className="btn btn-danger" type="submit" disabled={this.props.invalid || this.props.pristine || this.props.submitting}>
              Create Car
             </button>
           </form>
@@ -82,19 +77,38 @@ class CarsNew extends Component {
     );
   }
 
-  renderField(field) {
+  renderField({ input, label, type, meta: { touched, error, warning } }) {
     return (
       <div className="form-group">
-        <label>{field.label}</label>
+        <label>{label}</label>
         <input
           className="form-control"
-          type={field.type}
-          {...field.input}
+          type={type}
+          {...input}
         />
-        {field.touched && (field.error && <span>{field.error}</span>)}
+        {touched && (error && <span className="form-error">{error}</span>)}
       </div>
     );
   }
+}
+
+function validate(values) {
+  const errors = {}
+  if (!values.brand) {
+    errors.brand = 'Required'
+  }
+  if (!values.model) {
+    errors.model = 'Required'
+  }
+  if (!values.owner) {
+    errors.owner = 'Required'
+  }
+  if (!values.plate) {
+    errors.plate = 'Required'
+  } else if (values.plate.match(/^([A-Z]|\-|\d)+$/) === null) {
+    errors.plate = 'Should be all caps and no special characters'
+  }
+  return errors
 }
 
 function mapStateToProps(state) {
@@ -104,7 +118,8 @@ function mapStateToProps(state) {
 }
 
 export default reduxForm({
-  form: 'newCarForm' // a unique identifier
+  form: 'newCarForm', // a unique identifier
+  validate
 })(
   connect(mapStateToProps, { createCar })(CarsNew)
 );

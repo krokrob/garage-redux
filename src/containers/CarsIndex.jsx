@@ -43,15 +43,17 @@ class CarsIndex extends Component {
   renderCars(){
     return this.props.cars.map((car) => {
       return(
-        <div className="car" key={car.id}>
-          <div className="car-image">
-            <img src="../../assets/images/white_logo_black_square.png" alt=""/>
+        <Link to={`/cars/${car.id}`} key={car.id}>
+          <div className="car" key={car.id}>
+            <div className="car-image">
+              <img src="../../assets/images/white_logo_black_square.png" alt=""/>
+            </div>
+            <div className="car-info">
+              <h4>{car.brand} - {car.model}</h4>
+              <p><strong>Owner:</strong> {car.owner}</p>
+            </div>
           </div>
-          <div className="car-info">
-            <h4>{car.brand} - {car.model}</h4>
-            <p><strong>Owner:</strong> {car.owner}</p>
-          </div>
-        </div>
+        </Link>
       );
     });
   }
